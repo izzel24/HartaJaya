@@ -1,5 +1,5 @@
 import './App.css'
-import Navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import backgroundHero from './assets/Hero-Background.png'
 import { MdWhatsapp } from 'react-icons/md'
 import buskecil from './assets/mini_bus-removebg-preview.webp';
