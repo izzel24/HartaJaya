@@ -41,8 +41,8 @@ export default function Card({image , armadaName, deskripsi , harga}) {
                     </div>
                     
                       <a href='https://wa.link/plevtw' target='_blank' rel='noopener noreferrer'
-                        class="bg-[#0D2C54] cursor-pointer text-white px-4 py-2 rounded-sm font-medium hover:bg-[#0D2C54]/90 transition">
-                        Pesan Sekarang
+                        class="bg-[#0D2C54] cursor-pointer text-white lg:px-4 px-2 py-2 rounded-sm font-medium lg:text-[14px] text-[12px] hover:bg-[#0D2C54]/90 transition">
+                        Pesan
                     </a>
                 </div>
                  
