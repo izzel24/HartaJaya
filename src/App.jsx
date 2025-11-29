@@ -5,6 +5,7 @@ import { MdWhatsapp } from 'react-icons/md'
 import buskecil from './assets/mini_bus-removebg-preview.webp';
 import innova from './assets/innova.png';
 import hiace from './assets/hiace.png';
+import avanza from './assets/Avanza.png'
 import bgArmada from './assets/bg-armada.png';
 import paketWisata1 from './assets/PaketWisata-1.jpg';
 import paketWisata2 from './assets/PaketWisata-2.jpg';
@@ -16,8 +17,26 @@ import Card from './components/Card';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import Footer from './components/Footer';
+import { useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function App() {
+
+  // const [currentIndex, setCurrentIndex] = useState(0)
+  const slideRef = useRef()
+
+  const cards = [
+    { image: buskecil, armada: "Mini Bus", deskripsi: "Ideal untuk perjalanan rombongan kecil dan acara kantor.", harga: "2.000.000" },
+    { image: innova, armada: "Innova Reborn", deskripsi: "Kenyamanan dan kemewahan untuk perjalanan keluarga kecil atau bisnis.", harga: "950.000" },
+    { image: hiace, armada: "Hiace", deskripsi: "Pilihan tepat untuk perjalanan grup dengan kenyamanan ekstra", harga: "1.500.000" },
+    { image: avanza, armada: "Avanza", deskripsi: "Pilihan terbaik untuk perjalanan ekonomis dan praktis, cocok untuk keluarga", harga: "750.000" },
+  ]
+
 
   return (
     <div className='scroll-smooth' >
@@ -49,15 +68,49 @@ function App() {
             <p className='font-roboto lg:text-2xl md:text-xl text-lg  font-light italic px-5'>Setiap Perjalanan bersama Harta Jaya Tour & Travel didukung armada terbaik seperti innova reborn, Hiace, dan Bus Mini yang selalu dalam kondisi prima.
               Dilengkapi pendingin udara (AC), interior bersih dan luas, serta driver berpengalaman dan ramah, kami pastikan perjalanan Anda selalu aman, nyaman, dan menyenangkan.</p>
           </div>
-          <div className='bg-cover bg-center relative z-0' style={{ backgroundImage: `url(${bgArmada})` }}>
+          <div className='bg-cover bg-center relative' style={{ backgroundImage: `url(${bgArmada})` }}>
             <div className='bg-white/50 inset-0 absolute z-10 top-0 left-0' />
-            <div className=' relative z-50  grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1 gap-2 justify-items-center p-5'>
-              <Card image={buskecil} armadaName={"Mini Bus"} deskripsi={"Ideal untuk perjalanan rombongan kecil dan acara kantor."} harga={"2.000.000"} />
-              <Card image={innova} armadaName={"Innova Reborn"} deskripsi={"Kenyamanan dan kemewahan untuk perjalanan keluarga kecil atau bisnis."} harga={"950.000"} />
-              <Card image={hiace} armadaName={"Hiace"} deskripsi={"Pilihan tepat untuk perjalanan grup dengan kenyamanan ekstra"} harga={"1.500.000"} />
+            <div className='flex flex-col items-center justify-center'>
+              <div className='flex max-w-[1300px] justify-end w-full p-3 px-10 sm:px-20 gap-2'>
+                <button
+                  onClick={() => slideRef.current.swiper.slidePrev()}
+                  className="relative z-20 bg-white p-3 rounded-xs cursor-pointer"
+                >
+                  <IoIosArrowBack />
+                </button>
+                <button
+                  onClick={() => slideRef.current.swiper.slideNext()}
+                  className="relative z-20 bg-white p-3 rounded-xs cursor-pointer"
+                >
+                  <IoIosArrowForward />
+                </button>
+              </div>
               
-              {/* <div className='aspect-video'></div>
-              <div className='aspect-video'></div> */}
+              <div className='relative z-50 pt-2 p-5 max-w-[450px] md:max-w-[900px] lg:max-w-[1300px] w-full mx-auto'>
+                <Swiper
+                  modules={[Navigation, Pagination]}
+                  pagination={{ clickable: true }}
+                  spaceBetween={16}
+                  slidesPerView={1}
+                  breakpoints={{
+                    640: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                  }}
+                  ref={slideRef}
+                >
+                  {cards.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <Card
+                        image={item.image}
+                        armadaName={item.armada}
+                        deskripsi={item.deskripsi}
+                        harga={item.harga}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
           </div>
         </div>

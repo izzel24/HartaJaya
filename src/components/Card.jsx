@@ -9,7 +9,7 @@ export default function Card({image , armadaName, deskripsi , harga}) {
               <img
                   src={image}
                   alt="House Painting"
-                  class="w-[70%] h-full"
+                  class="w-[80%] h-full"
               />
           </div>
 
@@ -20,9 +20,9 @@ export default function Card({image , armadaName, deskripsi , harga}) {
                   </div>
               </div>
 
-              <p>{deskripsi}</p>
+              <p className='lg:text-lg md:text-[14px] text-xs'>{deskripsi}</p>
 
-              <div class="mt-4 space-y-2 text-gray-600 text-sm">
+              <div class="md:mt-4 mt-2 space-y-2 text-gray-600 text-sm">
                  
                   <div class="flex items-center gap-2">
                       <div className='flex items-center gap-2'><FaUserTie /> Driver</div>
